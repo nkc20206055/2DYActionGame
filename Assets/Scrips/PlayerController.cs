@@ -69,6 +69,9 @@ public class PlayerController : MonoBehaviour
             jumpKey = false;
             keyLook = false;
         }
+        
+
+        
     }
     void FixedUpdate()
     {
@@ -145,5 +148,10 @@ public class PlayerController : MonoBehaviour
             timer = 0f;
             keyLook = true; // キー操作をロックする
         }
+    }
+    //攻撃判定確かめ…後日変更
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("Hit");
     }
 }
