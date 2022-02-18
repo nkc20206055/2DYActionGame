@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 SaveVec;   //移動などを保存する
     Rigidbody2D Rd2D;　//Rigidbody2Dを保存する
+    private Animator anim = null;
     float InputVec;    //横移動時の向きの値を入れる
     //ジャンプ変数1
     enum Status
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Rd2D = gameObject.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -52,10 +54,27 @@ public class PlayerController : MonoBehaviour
             Vector3 SavelocalScale = transform.localScale;//現在の向きを保存
             transform.localScale = new Vector3(/*SavelocalScale.x **/ InputVec, SavelocalScale.y, SavelocalScale.z);
         }
-        //ジャンプ
-        if(Input.GetKey(KeyCode.Space))
+        if(InputVec>0)
         {
-            if(!keyLook)
+           anim.SetBool("run", true);
+        }
+        else if(InputVec<0)
+        {
+            anim.SetBool("run", true);
+        }
+        else
+        {
+            anim.SetBool("run", false);
+        }
+
+        jump();
+    }
+    void jump()
+    {
+        //ジャンプ
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (!keyLook)
             {
                 jumpKey = true;
             }
@@ -69,10 +88,8 @@ public class PlayerController : MonoBehaviour
             jumpKey = false;
             keyLook = false;
         }
-        
-
-        
     }
+
     void FixedUpdate()
     {
         SaveVec.x = MoveSpeed * InputVec * Time.deltaTime;
@@ -149,9 +166,5 @@ public class PlayerController : MonoBehaviour
             keyLook = true; // キー操作をロックする
         }
     }
-    //攻撃判定確かめ…後日変更
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log("Hit");
-    }
+    
 }
