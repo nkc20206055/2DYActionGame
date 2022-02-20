@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D Rd2D;　//Rigidbody2Dを保存する
     private Animator anim = null;
     float InputVec;    //横移動時の向きの値を入れる
-    
 
+    public float gravity; //重力
+    
 
     //移動制限処理用変数
     private Vector2 playerPos;
@@ -25,11 +26,14 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    // Update is called sonce per frame
     void Update()
     {
+        
         //移動制限
         this.MovingRestrictions();
+
+        
 
 
         //移動
@@ -51,9 +55,6 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("run", false);
         }
-
-       
-        
         
     }
    
