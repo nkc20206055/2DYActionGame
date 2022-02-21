@@ -17,6 +17,7 @@ public class jump : MonoBehaviour
     float firstSpeed = 16f;   //初速
     const float gravity = 120.0f;    //重力
     const float jumpLowerLimit = 0.03f;
+    private Animator anim = null;
 
     float timer = 0f;  //経過時間
     bool jumpKey = false;    //ジャンプキー
@@ -26,6 +27,7 @@ public class jump : MonoBehaviour
     void Start()
     {
         Rd2D = gameObject.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,18 +40,17 @@ public class jump : MonoBehaviour
             if (!keyLook)
             {
                 jumpKey = true;
-               
             }
             else
             {
-                jumpKey = false;
-                
+                jumpKey = false; 
             }
         }
         else
         {
             jumpKey = false;
             keyLook = false;
+            
         }
     }
 

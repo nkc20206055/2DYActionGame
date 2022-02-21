@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D Rd2D;　//Rigidbody2Dを保存する
     private Animator anim = null;
     float InputVec;    //横移動時の向きの値を入れる
+    
 
     public float gravity; //重力
-    
+    //攻撃
+    private bool isAttack = false;
 
     //移動制限処理用変数
     private Vector2 playerPos;
@@ -24,17 +26,14 @@ public class PlayerController : MonoBehaviour
     {
         Rd2D = gameObject.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+       
     }
 
     // Update is called sonce per frame
     void Update()
     {
-        
-        //移動制限
+      //移動制限
         this.MovingRestrictions();
-
-        
-
 
         //移動
         InputVec = Input.GetAxisRaw("Horizontal");
@@ -55,7 +54,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("run", false);
         }
-        
+ 
     }
    
 
@@ -63,6 +62,17 @@ public class PlayerController : MonoBehaviour
     {
         SaveVec.x = MoveSpeed * InputVec * Time.deltaTime;
         transform.position += SaveVec;
+        if(Input.GetMouseButtonDown(0))
+        {
+            anim.SetBool("lightAttack", true);
+            isAttack = true;
+            Debug.Log("A");
+            StartCoroutine("WaitForAttack");
+        }
+        else
+        {
+            anim.SetBool("lightAttack", false);
+        }
 
         
     }
@@ -78,6 +88,13 @@ public class PlayerController : MonoBehaviour
         this.playerPos.y = Mathf.Clamp(this.playerPos.y, -this.playerPosYClamp, this.playerPosYClamp);
 
         transform.position = new Vector2(this.playerPos.x, this.playerPos.y);
+    }
+
+    IEnumerator WaitForAttack()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isAttack = false;
+        
     }
     
 
