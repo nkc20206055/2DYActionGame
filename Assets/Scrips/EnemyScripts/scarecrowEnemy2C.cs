@@ -16,6 +16,14 @@ public class scarecrowEnemy2C : MonoBehaviour
     {
         anim.Play("damage");
         HP--;
+        Debug.Log(HP);
+    }
+    void Destroy()
+    {
+        if (HP<=0)
+        {
+            Destroy(gameObject);
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -31,8 +39,8 @@ public class scarecrowEnemy2C : MonoBehaviour
         if (sr.isVisible)//sr(SpriteRenderer)が画面に入っているとき動く
         {
             time += 1 * Time.deltaTime;
-            Debug.Log(time);
-            if (time >= Maxattacktime)
+            //Debug.Log(time);
+            if (time >= Maxattacktime)//射撃
             {
                 Debug.Log("射撃");
                 var t=Instantiate(bullet);
@@ -41,6 +49,18 @@ public class scarecrowEnemy2C : MonoBehaviour
                 t.transform.position = bulletPos;
                 time = 0;
             }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                Damage();
+            }
+            Destroy();
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if ()
+        //{
+        //    Damage()
+        //}
     }
 }

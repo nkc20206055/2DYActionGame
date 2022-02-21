@@ -524,6 +524,7 @@ GameObject:
   - component: {fileID: 1143956895}
   - component: {fileID: 1143956896}
   - component: {fileID: 1143956897}
+  - component: {fileID: 1143956898}
   m_Layer: 0
   m_Name: scarecrowEnemy2
   m_TagString: Untagged
@@ -654,8 +655,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8132405441662068519, guid: 368b27242ec5b8342aefc959bef0f719, type: 3}
-  MaxHP: 0
+  MaxHP: 3
   Maxattacktime: 3
+--- !u!50 &1143956898
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143956892}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1380696009
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +802,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1380696014
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -892,6 +914,7 @@ GameObject:
   - component: {fileID: 1853966859}
   - component: {fileID: 1853966858}
   - component: {fileID: 1853966857}
+  - component: {fileID: 1853966861}
   m_Layer: 0
   m_Name: scarecrowEnemy3
   m_TagString: Untagged
@@ -1009,6 +1032,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1853966861
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853966856}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &8132405440571437166
 PrefabInstance:
   m_ObjectHideFlags: 0
