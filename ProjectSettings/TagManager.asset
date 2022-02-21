@@ -9,6 +9,8 @@ TagManager:
   - GROND
   - GROUND
   - Enemy
+  - rightattack
+  - heavyattack
   layers:
   - Default
   - TransparentFX

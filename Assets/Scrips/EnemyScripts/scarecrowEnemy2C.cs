@@ -12,6 +12,10 @@ public class scarecrowEnemy2C : MonoBehaviour
     private Animator anim = null;
     private int HP;//この敵のHP
     private float time;//溜まったら動きための数値
+    void NormalAnimaton()
+    {
+        anim.Play("normal");
+    }
     void Damage()
     {
         anim.Play("damage");
