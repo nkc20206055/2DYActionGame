@@ -19,7 +19,7 @@ public class scarecrowEnemy3C : MonoBehaviour
 
     void normalanimation()//アニメーションを元に戻す場合
     {
-        AttackCorider.tag = "rightattack";//指定したGameObjectのtagを変更
+        AttackCorider.tag = "enemyrightattack";//指定したGameObjectのtagを変更
         AttackSwicth = false;
         attacktime = 0;
         anim.Play("normal");
@@ -63,7 +63,7 @@ public class scarecrowEnemy3C : MonoBehaviour
         //Debug.Log(attacktime);
         if (AttackSwicth == false && attacktime >= MRaxattacktime)
         {
-            AttackCorider.tag = "heavyattack";//指定したGameObjectのtagを変更
+            AttackCorider.tag = "enemyheavyattack";//指定したGameObjectのtagを変更
             anim.Play("heavyattack");
             AttackSwicth = true;
         }
@@ -109,6 +109,11 @@ public class scarecrowEnemy3C : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("当たった");
+        if (counterSwicth==true) {
+            if (collision.gameObject.tag == "playerCounterattack")
+            {
+                Damage();
+            }
+        }
     }
 }

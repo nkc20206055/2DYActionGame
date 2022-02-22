@@ -39,7 +39,7 @@ TextureImporter:
       213: 6810783783609677343
     second: "\u8A66\u4F5C\u30D7\u30EC\u30A4\u30E4\u30FC1_11"
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -93,6 +93,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -268,7 +269,7 @@ TextureImporter:
         width: 301
         height: 463
       alignment: 9
-      pivot: {x: 0.22998716, y: 0.48117375}
+      pivot: {x: 0.4, y: 0.48117375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

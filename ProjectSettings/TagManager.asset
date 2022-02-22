@@ -9,8 +9,9 @@ TagManager:
   - GROND
   - GROUND
   - Enemy
-  - rightattack
-  - heavyattack
+  - enemyrightattack
+  - enemyheavyattack
+  - playerCounterattack
   layers:
   - Default
   - TransparentFX
@@ -21,9 +22,9 @@ TagManager:
   - 
   - 
   - ground
-  - 
-  - 
-  - 
+  - PlayerDamge
+  - enemyattack
+  - GAcrider
   - 
   - 
   - 
