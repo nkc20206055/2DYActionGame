@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float gravity; //重力
     //攻撃
     private bool isAttack = false;
+    float Power=0;
 
     //移動制限処理用変数
     private Vector2 playerPos;
@@ -62,16 +63,23 @@ public class PlayerController : MonoBehaviour
     {
         SaveVec.x = MoveSpeed * InputVec * Time.deltaTime;
         transform.position += SaveVec;
+        //攻撃
         if(Input.GetMouseButtonDown(0))
+        {           
+                anim.SetBool("lightAttack", true);
+                isAttack = true;
+                StartCoroutine("WaitForAttack");   
+        }
+        else if(Input.GetMouseButton(0))
         {
-            anim.SetBool("lightAttack", true);
-            isAttack = true;
-            Debug.Log("A");
-            StartCoroutine("WaitForAttack");
+                anim.SetBool("hevayAttack", true);
+                isAttack = true;
+                StartCoroutine("WaitForAttack");
         }
         else
         {
             anim.SetBool("lightAttack", false);
+            anim.SetBool("hevayAttack", false);
         }
 
         

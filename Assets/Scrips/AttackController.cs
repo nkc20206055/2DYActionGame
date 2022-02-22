@@ -14,8 +14,14 @@ public class AttackController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)) //攻撃開始時(Spaceキーを押すと攻撃開始)
-            rd.velocity = new Vector2(attspeed, 0); //スピードをつけて攻撃オブジェクトを移動
+        if (Input.GetMouseButtonDown(0)) //攻撃開始時(Spaceキーを押すと攻撃開始)
+        {
+            rd.velocity = new Vector2(attspeed, 0);
+        }//スピードをつけて攻撃オブジェクトを移動
+        else if(Input.GetMouseButton(0))
+        {
+            rd.velocity = new Vector2(attspeed, 0);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
