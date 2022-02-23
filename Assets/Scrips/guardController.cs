@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class guardController : MonoBehaviour
 {
+    [SerializeField] GameObject CounterObject;
     public float counterTime;//カウンターできる時間
     public float damageTime;//無敵時間
 
@@ -73,12 +74,14 @@ public class guardController : MonoBehaviour
                 {
                     //Debug.Log("カウンター中"+CGtime);
                     anim.SetBool("counter", true);
+                    CounterObject.SetActive(true);
 
                 } else if (CGtime >= counterTime) //ガード中
                 {
                     //Debug.Log("ガード中");
                     anim.SetBool("guard", true);
                     anim.SetBool("counter", false);
+                    CounterObject.SetActive(false);
                     gadeSwicth = true;
                 }
             } else if (Input.GetMouseButtonUp(1))//右マウスボタンを上げた時
@@ -87,12 +90,14 @@ public class guardController : MonoBehaviour
                 {
                     Debug.Log("カウンターキャンセル");
                     anim.SetBool("counter", false);
+                    CounterObject.SetActive(false);
                 }
                 else if (CGtime > 0.1f && CGtime < counterTime)//カウンター
                 {
                     Debug.Log("カウンター");
                     //anim.SetBool("counterattack", true);
                     anim.SetBool("counter", false);
+                    CounterObject.SetActive(false);
 
                 }
                 else if (CGtime >= counterTime)//ガードを終わらせる

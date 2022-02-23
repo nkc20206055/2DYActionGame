@@ -10,6 +10,7 @@ public class scarecrowEnemy3C : MonoBehaviour
     public bool heavyattackSwicth;//Inspector側からONにするすると強攻撃しかしなくなる
 
     GameObject AttackCorider;
+    EcColliderController ECC;
 
     private Animator anim;//Animatorを保存
     private int HP;//このエネミーのHP
@@ -40,11 +41,31 @@ public class scarecrowEnemy3C : MonoBehaviour
     {
         if (counterSwicth == true)
         {
-            anim.Play("counter");
+            if (ECC.counterHetSwicth==true)
+            {
+                anim.Play("counter");
+                ECC.counterHetSwicth = false;
+                counterSwicth = false;
+
+            }
             counterSwicth = false;
         } else if (counterSwicth == false) {
             anim.Play("damage");
             HP--;
+        }
+    }
+    void CounterHet()
+    {
+        if (counterSwicth == true)
+        {
+            if (ECC.counterHetSwicth == true)
+            {
+                anim.Play("counter");
+                ECC.counterHetSwicth = false;
+                counterSwicth = false;
+
+            }
+            counterSwicth = false;
         }
     }
     void rightattack()//弱攻撃
@@ -65,6 +86,7 @@ public class scarecrowEnemy3C : MonoBehaviour
         {
             AttackCorider.tag = "enemyheavyattack";//指定したGameObjectのtagを変更
             anim.Play("heavyattack");
+            CounterHet();
             AttackSwicth = true;
         }
     }
@@ -73,6 +95,8 @@ public class scarecrowEnemy3C : MonoBehaviour
     {
         HP = MaxHP;
         AttackCorider = transform.GetChild(0).gameObject;//子オブジェクトを取得
+        ECC = transform.GetChild(1).gameObject.GetComponent<EcColliderController>();
+        Debug.Log(ECC);
         //Debug.Log(AttackCorider);
         anim = GetComponent<Animator>();
         AttackSwicth = false;
@@ -86,6 +110,8 @@ public class scarecrowEnemy3C : MonoBehaviour
         //    case STATE:
         //        break;
         //}
+
+        CounterHet();
 
         if (rightattackSwicth==true&& heavyattackSwicth == false)//弱攻撃のみ
         {
@@ -101,6 +127,9 @@ public class scarecrowEnemy3C : MonoBehaviour
             Damage();
         }
 
+        
+        //Damage();
+
         if (HP<=0)//死亡
         {
             Destroy(gameObject);
@@ -109,11 +138,11 @@ public class scarecrowEnemy3C : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (counterSwicth==true) {
-            if (collision.gameObject.tag == "playerCounterattack")
-            {
-                Damage();
-            }
-        }
+        //if (counterSwicth==true) {
+        //    if (collision.gameObject.tag == "playerCounterattack")
+        //    {
+        //        Damage();
+        //    }
+        //}
     }
 }
