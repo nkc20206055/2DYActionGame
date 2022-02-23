@@ -9,6 +9,8 @@ public class guardController : MonoBehaviour
     public float counterTime;//カウンターできる時間
     public float damageTime;//無敵時間
 
+    EcColliderController ECC;
+
     private Animator anim;
     private Slider slider;//ガードゲージのUI
     private float CGtime,cTime;//
@@ -21,6 +23,7 @@ public class guardController : MonoBehaviour
     {
         anim.SetBool("counterattack", false);
         anim.SetBool("grndbreak", false);
+        gameObject.layer = LayerMask.NameToLayer("Default");
         MouseSwicth = true;
         Debug.Log("動いた");
     }
@@ -64,6 +67,19 @@ public class guardController : MonoBehaviour
             damageSwicth = false;
             sliderS = slider.maxValue;
             slider.value = slider.maxValue;
+        }
+
+        if (counterSwicth==true)//カウンターが成功した時
+        {
+            if (ECC.counterHetSwicth == true)
+            {
+                Debug.Log("当たった");
+                gameObject.layer = LayerMask.NameToLayer("PlayerDamge");//レイヤーマスクを変更する
+                anim.SetBool("counterattack", true);
+                anim.SetBool("counter", false);
+                CounterObject.SetActive(false);
+            }
+            counterSwicth = false;
         }
 
         if (MouseSwicth==true) {
@@ -119,8 +135,16 @@ public class guardController : MonoBehaviour
         Damage();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag=="counterHet")
+        {
+            //Debug.Log(collision.gameObject);
+            ECC = collision.gameObject.GetComponent<EcColliderController>();
+            counterSwicth = true;
+
+        }
+
         if (collision.gameObject.tag=="enemyrightattack")
         {
             damageSwicth = true;

@@ -12,6 +12,7 @@ TagManager:
   - enemyrightattack
   - enemyheavyattack
   - playerCounterattack
+  - counterHet
   layers:
   - Default
   - TransparentFX

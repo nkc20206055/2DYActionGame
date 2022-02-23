@@ -20,10 +20,16 @@ public class scarecrowEnemy3C : MonoBehaviour
 
     void normalanimation()//アニメーションを元に戻す場合
     {
+        ECC.counterHetSwicth = false;
+        counterSwicth = false;
         AttackCorider.tag = "enemyrightattack";//指定したGameObjectのtagを変更
         AttackSwicth = false;
         attacktime = 0;
-        anim.Play("normal");
+        anim.SetBool("rightattack", false);
+        anim.SetBool("heavyattack", false);
+        anim.SetBool("counterhet", false);
+        anim.SetBool("damage", false);
+        //anim.Play("normal");
     }
     void CounterSwicthONOFF()//アニメーション中でcounterSwicthを起動できるようにする
     {
@@ -39,32 +45,44 @@ public class scarecrowEnemy3C : MonoBehaviour
     }
     void Damage()//攻撃をくらったときかカウンターされたとき
     {
-        if (counterSwicth == true)
-        {
-            if (ECC.counterHetSwicth==true)
-            {
-                anim.Play("counter");
-                ECC.counterHetSwicth = false;
-                counterSwicth = false;
+        //if (counterSwicth == true)
+        //{
+        //    if (ECC.counterHetSwicth==true)
+        //    {
+        //        anim.Play("counter");
+        //        ECC.counterHetSwicth = false;
+        //        counterSwicth = false;
 
-            }
-            counterSwicth = false;
-        } else if (counterSwicth == false) {
-            anim.Play("damage");
+        //    }
+        //    counterSwicth = false;
+        //} else 
+        if (counterSwicth == false) {
+            anim.SetBool("rightattack", false);
+            anim.SetBool("heavyattack", false);
+            anim.SetBool("damage",true);
             HP--;
         }
     }
     void CounterHet()
     {
+        //if (counterSwicth == true)
+        //{
+        //    if (ECC.counterHetSwicth == true)
+        //    {
+        //        //anim.Play("counter");
+        //        anim.SetBool("heavyattack", false);
+        //        anim.SetBool("counterhet", true);
+        //        ECC.counterHetSwicth = false;
+        //        counterSwicth = false;
+
+        //    }
+        //    ECC.counterHetSwicth = false;
+        //    counterSwicth = false;
+        //}
         if (counterSwicth == true)
         {
-            if (ECC.counterHetSwicth == true)
-            {
-                anim.Play("counter");
-                ECC.counterHetSwicth = false;
-                counterSwicth = false;
-
-            }
+            anim.SetBool("heavyattack", false);
+            anim.SetBool("counterhet", true);
             counterSwicth = false;
         }
     }
@@ -74,7 +92,7 @@ public class scarecrowEnemy3C : MonoBehaviour
         //Debug.Log(attacktime);
         if (AttackSwicth == false&&attacktime>= MRaxattacktime) {
 
-            anim.Play("rightattack");
+            anim.SetBool("rightattack", true);
             AttackSwicth = true;
         }
     }
@@ -85,8 +103,8 @@ public class scarecrowEnemy3C : MonoBehaviour
         if (AttackSwicth == false && attacktime >= MRaxattacktime)
         {
             AttackCorider.tag = "enemyheavyattack";//指定したGameObjectのtagを変更
-            anim.Play("heavyattack");
-            CounterHet();
+            anim.SetBool("heavyattack", true);
+            //CounterHet();
             AttackSwicth = true;
         }
     }
@@ -96,7 +114,7 @@ public class scarecrowEnemy3C : MonoBehaviour
         HP = MaxHP;
         AttackCorider = transform.GetChild(0).gameObject;//子オブジェクトを取得
         ECC = transform.GetChild(1).gameObject.GetComponent<EcColliderController>();
-        Debug.Log(ECC);
+        //Debug.Log(ECC);
         //Debug.Log(AttackCorider);
         anim = GetComponent<Animator>();
         AttackSwicth = false;
@@ -111,7 +129,6 @@ public class scarecrowEnemy3C : MonoBehaviour
         //        break;
         //}
 
-        CounterHet();
 
         if (rightattackSwicth==true&& heavyattackSwicth == false)//弱攻撃のみ
         {
@@ -127,7 +144,6 @@ public class scarecrowEnemy3C : MonoBehaviour
             Damage();
         }
 
-        
         //Damage();
 
         if (HP<=0)//死亡
@@ -144,5 +160,10 @@ public class scarecrowEnemy3C : MonoBehaviour
         //        Damage();
         //    }
         //}
+        if (collision.gameObject.tag == "playerCounterattack")
+        {
+            //Debug.Log("ヒット");
+            CounterHet();
+        }
     }
 }

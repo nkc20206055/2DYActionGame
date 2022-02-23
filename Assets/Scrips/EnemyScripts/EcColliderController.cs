@@ -19,9 +19,9 @@ public class EcColliderController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag=="playerCounterattack")
+        if (collision.gameObject.tag == "playerCounterattack")
         {
-            Debug.Log("ヒット");
+            //Debug.Log("ヒット");
             counterHetSwicth = true;
         }
     }
