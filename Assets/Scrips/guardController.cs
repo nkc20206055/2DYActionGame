@@ -91,7 +91,7 @@ public class guardController : MonoBehaviour
                 else if (CGtime > 0.1f && CGtime < counterTime)//カウンター
                 {
                     Debug.Log("カウンター");
-                    anim.SetBool("counterattack", true);
+                    //anim.SetBool("counterattack", true);
                     anim.SetBool("counter", false);
 
                 }
