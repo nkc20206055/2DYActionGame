@@ -22,7 +22,7 @@ public class pacController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rightattackSwicth==true)
+        if (rightattackSwicth==true)//弱攻撃
         {
             if (StartSwicth == true)
             {
@@ -46,7 +46,7 @@ public class pacController : MonoBehaviour
                 transform.localPosition = savePpos;
             }
         }
-        else if (heavyattackSwicth==true)
+        else if (heavyattackSwicth==true)//強攻撃
         {
             if (StartSwicth == true)
             {

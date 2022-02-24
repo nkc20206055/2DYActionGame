@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     //攻撃
     public float MaxattackTime;//外部から変更できる最大ため時間
     private float attackAutTime;//
-    public  float attackTime;//攻撃を貯めた時間
+    private float attackTime;//攻撃を貯めた時間
     private bool normalSwicth;//通常の状態に戻すための変数
     private bool isAttack = false;
     float Power=0;
