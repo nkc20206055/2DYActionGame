@@ -30,7 +30,7 @@ public class bladeEnemy : MonoBehaviour
         attackswicth = false;
         counterswicth = false;
         destroyswicth = false;
-        playerO = GameObject.Find("Player");
+        playerO = GameObject.Find("prototypePlayer");
         anim = GetComponent<Animator>();
     }
 
@@ -48,9 +48,10 @@ public class bladeEnemy : MonoBehaviour
                     Attack();
                     break;
                 case STATE.counterMe://カウンターを食らったとき
-
+                    counterHet();
                     break;
                 case STATE.damage://ダメージ
+                    Damege();
                     break;
             }
 
@@ -69,11 +70,11 @@ public class bladeEnemy : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.V))//HPが減るかどうかの確認
-            {
-                //counterMeandDamege();
-                changeState(STATE.damage);
-            }
+            //if (Input.GetKeyDown(KeyCode.V))//HPが減るかどうかの確認
+            //{
+            //    //counterMeandDamege();
+            //    changeState(STATE.damage);
+            //}
             
         }
         if (hp <= 0)//死亡
@@ -98,19 +99,27 @@ public class bladeEnemy : MonoBehaviour
     }
     private void Normal()//通常状態
     {
-        anim.Play("normal");
+        //anim.Play("normal");
+        anim.SetBool("run", false);
+        anim.SetBool("attack", false);
+        anim.SetBool("counterhet", false);
+        anim.SetBool("damage", false);
         attackswicth = false;
+        Debug.Log("戻る");
+        changeState(STATE.move);
     }
     private void Move()//歩き（※ステートで使用）
     {
         //anim.Play("Move");
         anim.SetBool("run", true);
+        playerO = GameObject.Find("prototypePlayer");
         savePlayerPos = playerO.transform.position;
         savePlayerPos =  transform.position- savePlayerPos;
         //Debug.Log(savePlayerPos.x);
         if (savePlayerPos.x<= NPos&& savePlayerPos.x >= -NPos)
         {
             attackswicth = true;
+            anim.SetBool("run", false);
             changeState(STATE.attack);
         }
         float s = savePlayerPos.x - transform.position.x;
@@ -133,24 +142,38 @@ public class bladeEnemy : MonoBehaviour
     private void Attack()//攻撃（※ステートで使用）
     {
         //attackswicth = true;
-        anim.Play("heavyattack");
+        anim.SetBool("attack", true);
         if (attackswicth==false)
         {
+            anim.SetBool("attack", false);
             changeState(STATE.move);
         }
     }
-    private void counterMeandDamege()//ダメージかカウンターされたとき
+    private void counterHet()//カウンターを当られたら
     {
-        if (counterswicth==true) {
-            anim.Play("counter");
-            counterswicth = false;
-        }
-        else if (counterswicth==false)
-        {
-            anim.Play("damage");
-            hp--;
-        }
+        anim.SetBool("run", false);
+        anim.SetBool("attack", false);
+        anim.SetBool("counterhet", true);
+        counterswicth = false;
+    }
+    private void Damege()//ダメージ
+    {
+        //if (counterswicth==true) {
+        //    anim.Play("counter");
+        //    counterswicth = false;
+        //}
+        //else if (counterswicth==false)
+        //{
+        //    anim.Play("damage");
+        //    hp--;
+        //}
+        anim.SetBool("run", false); 
+        anim.SetBool("attack", false); 
+        anim.SetBool("counterhet", false);
+        anim.SetBool("damage", true);
+        hp--;
         Debug.Log(hp);
+        //changeState(STATE.normal);
     }
     private void destroy()//死亡時
     {
@@ -163,10 +186,16 @@ public class bladeEnemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "playerCounterattack")
+        if (counterswicth==true) {
+            if (collision.gameObject.tag == "playerCounterattack")
+            {
+                //Debug.Log("ヒット");
+                changeState(STATE.counterMe);
+            }
+        }
+        if (collision.gameObject.name == "playerAttackCollider")//お試し　プレイヤーの攻撃がヒットしたら
         {
-            //Debug.Log("ヒット");
-            changeState(STATE.counterMe);
+            changeState(STATE.damage);
         }
     }
 }
