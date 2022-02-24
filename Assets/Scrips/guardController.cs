@@ -102,13 +102,13 @@ public class guardController : MonoBehaviour
                 }
             } else if (Input.GetMouseButtonUp(1))//右マウスボタンを上げた時
             {
-                if (CGtime <= 0.1f)//すぐにできないよう猶予を作っている
+                if (CGtime <= 0.05f)//すぐにできないよう猶予を作っている
                 {
                     Debug.Log("カウンターキャンセル");
                     anim.SetBool("counter", false);
                     CounterObject.SetActive(false);
                 }
-                else if (CGtime > 0.1f && CGtime < counterTime)//カウンター
+                else if (CGtime > 0.05f && CGtime < counterTime)//カウンター
                 {
                     Debug.Log("カウンター");
                     //anim.SetBool("counterattack", true);
