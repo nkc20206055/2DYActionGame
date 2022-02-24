@@ -1365,6 +1365,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: scarecrowEnemy3
       objectReference: {fileID: 0}
+    - target: {fileID: 6710268945571645833, guid: 01783811359bab24998c60d9e11ac7ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6710268945571645837, guid: 01783811359bab24998c60d9e11ac7ff,
         type: 3}
       propertyPath: m_LocalPosition.x

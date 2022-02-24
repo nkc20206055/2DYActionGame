@@ -5,7 +5,7 @@ using UnityEngine;
 public class bladeEnemy : MonoBehaviour
 {
     //ステートマシンでのAIを作成
-    private enum STATE {normal,move,attack,counterMe }
+    private enum STATE {normal,move,attack,counterMe, damage }
     private STATE state = STATE.normal;//enumのnormalを入れる
     private STATE saveState=STATE.move;//enumを変えるとき変化するほうを保存する変数
     //private STATE _state;
@@ -47,6 +47,10 @@ public class bladeEnemy : MonoBehaviour
                 case STATE.attack://攻撃する
                     Attack();
                     break;
+                case STATE.counterMe://カウンターを食らったとき
+                    break;
+                case STATE.damage://ダメージ
+                    break;
             }
 
             //ステートが変わったとき
@@ -66,7 +70,8 @@ public class bladeEnemy : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.V))//HPが減るかどうかの確認
             {
-                counterMeandDamege();
+                //counterMeandDamege();
+                changeState(STATE.damage);
             }
             
         }
@@ -97,7 +102,8 @@ public class bladeEnemy : MonoBehaviour
     }
     private void Move()//歩き（※ステートで使用）
     {
-        anim.Play("Move");
+        //anim.Play("Move");
+        anim.SetBool("run", true);
         savePlayerPos = playerO.transform.position;
         savePlayerPos =  transform.position- savePlayerPos;
         //Debug.Log(savePlayerPos.x);
@@ -153,5 +159,13 @@ public class bladeEnemy : MonoBehaviour
     private void gameODestroy()
     {
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "playerCounterattack")
+        {
+            //Debug.Log("ヒット");
+            changeState(STATE.counterMe);
+        }
     }
 }
