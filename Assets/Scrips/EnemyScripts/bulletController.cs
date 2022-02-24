@@ -26,4 +26,11 @@ public class bulletController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "prototypePlayer")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
