@@ -48,6 +48,7 @@ public class bladeEnemy : MonoBehaviour
                     Attack();
                     break;
                 case STATE.counterMe://カウンターを食らったとき
+
                     break;
                 case STATE.damage://ダメージ
                     break;

@@ -227,7 +227,7 @@ MonoBehaviour:
   MRaxattacktime: 4
   MHaxattacktime: 6
   rightattackSwicth: 0
-  heavyattackSwicth: 1
+  heavyattackSwicth: 0
   counterSwicth: 0
 --- !u!1001 &8394846514925263479
 PrefabInstance:

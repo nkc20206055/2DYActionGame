@@ -45,23 +45,17 @@ public class scarecrowEnemy3C : MonoBehaviour
     }
     void Damage()//攻撃をくらったときかカウンターされたとき
     {
-        //if (counterSwicth == true)
-        //{
-        //    if (ECC.counterHetSwicth==true)
-        //    {
-        //        anim.Play("counter");
-        //        ECC.counterHetSwicth = false;
-        //        counterSwicth = false;
-
-        //    }
-        //    counterSwicth = false;
-        //} else 
-        if (counterSwicth == false) {
-            anim.SetBool("rightattack", false);
-            anim.SetBool("heavyattack", false);
-            anim.SetBool("damage",true);
-            HP--;
-        }
+        //if (counterSwicth == false) {
+        //    anim.SetBool("rightattack", false);
+        //    anim.SetBool("heavyattack", false);
+        //    anim.SetBool("damage",true);
+        //    HP--;
+        //}
+        anim.SetBool("counterhet", false);
+        anim.SetBool("rightattack", false);
+        anim.SetBool("heavyattack", false);
+        anim.SetBool("damage", true);
+        HP--;
     }
     void CounterHet()
     {
@@ -139,10 +133,10 @@ public class scarecrowEnemy3C : MonoBehaviour
             heavyattack();
         }
 
-        if (Input.GetKeyDown(KeyCode.V))//ダメージのアニメーションが動くかどうかの確認
-        {
-            Damage();
-        }
+        //if (Input.GetKeyDown(KeyCode.V))//ダメージのアニメーションが動くかどうかの確認
+        //{
+        //    Damage();
+        //}
 
         //Damage();
 
@@ -164,6 +158,11 @@ public class scarecrowEnemy3C : MonoBehaviour
         {
             //Debug.Log("ヒット");
             CounterHet();
+        }
+        if (collision.gameObject.name== "playerAttackCollider")//お試し
+        {
+            Debug.Log("ヒット");
+            Damage();
         }
     }
 }
