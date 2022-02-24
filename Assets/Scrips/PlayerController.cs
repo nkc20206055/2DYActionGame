@@ -8,12 +8,17 @@ public class PlayerController : MonoBehaviour
 
     Vector3 SaveVec;   //移動などを保存する
     Rigidbody2D Rd2D;　//Rigidbody2Dを保存する
+    pacController pacC;
     private Animator anim = null;
     float InputVec;    //横移動時の向きの値を入れる
     
 
     public float gravity; //重力
     //攻撃
+    public float MaxattackTime;//外部から変更できる最大ため時間
+    private float attackAutTime;//
+    public  float attackTime;//攻撃を貯めた時間
+    private bool normalSwicth;//通常の状態に戻すための変数
     private bool isAttack = false;
     float Power=0;
 
@@ -25,9 +30,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        normalSwicth = false;
         Rd2D = gameObject.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-       
+        pacC = transform.GetChild(2).gameObject.GetComponent<pacController>();
     }
 
     // Update is called sonce per frame
@@ -55,7 +61,50 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("run", false);
         }
- 
+
+        //攻撃
+        if (Input.GetMouseButton(0))//攻撃を貯める
+        {
+            if (attackTime<MaxattackTime) {
+                attackTime += 1 * Time.deltaTime;
+
+                //Debug.Log(attackTime);
+            }
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (attackTime >= MaxattackTime)//強攻撃
+            {
+                anim.SetBool("hevayAttack", true);
+                isAttack = true;
+                pacC.heavyattackSwicth = true;
+                StartCoroutine("WaitForAttack");
+                attackTime = 0;
+                attackAutTime = 1;//戻るまでの時間
+                normalSwicth = true;
+            }
+            else if (attackTime < MaxattackTime)//弱攻撃
+            {
+                anim.SetBool("lightAttack", true);
+                isAttack = true;
+                pacC.rightattackSwicth = true;
+                StartCoroutine("WaitForAttack");
+                attackTime = 0;
+                attackAutTime = 1;//戻るまでの時間
+                normalSwicth = true;
+            }
+        }else if (normalSwicth == true)//攻撃を戻す
+        {
+            attackTime += 1 * Time.deltaTime;
+            if (attackTime >= attackAutTime)
+            {
+                anim.SetBool("lightAttack", false);
+                anim.SetBool("hevayAttack", false);
+                attackTime = 0;
+                normalSwicth = false;
+            }
+        }
+
     }
    
 
@@ -64,23 +113,25 @@ public class PlayerController : MonoBehaviour
         SaveVec.x = MoveSpeed * InputVec * Time.deltaTime;
         transform.position += SaveVec;
         //攻撃
-        if(Input.GetMouseButtonDown(0))
-        {           
-                anim.SetBool("lightAttack", true);
-                isAttack = true;
-                StartCoroutine("WaitForAttack");   
-        }
-        else if(Input.GetMouseButton(0))
-        {
-                anim.SetBool("hevayAttack", true);
-                isAttack = true;
-                StartCoroutine("WaitForAttack");
-        }
-        else
-        {
-            anim.SetBool("lightAttack", false);
-            anim.SetBool("hevayAttack", false);
-        }
+        //if(Input.GetMouseButtonDown(0))
+        //{           
+        //        anim.SetBool("lightAttack", true);
+        //        isAttack = true;
+        //    pacC.rightattackSwicth = true;
+        //        StartCoroutine("WaitForAttack");   
+        //}
+        //else if(Input.GetMouseButton(0))
+        //{
+        //        anim.SetBool("hevayAttack", true);
+        //        isAttack = true;
+        //    pacC.heavyattackSwicth = true;
+        //        StartCoroutine("WaitForAttack");
+        //}
+        //else
+        //{
+        //    anim.SetBool("lightAttack", false);
+        //    anim.SetBool("hevayAttack", false);
+        //}
 
         
     }
