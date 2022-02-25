@@ -122,7 +122,13 @@ public class bladeEnemy : MonoBehaviour
             anim.SetBool("run", false);
             changeState(STATE.attack);
         }
-        float s = savePlayerPos.x - transform.position.x;
+        else
+        {
+            //attackswicth = true;
+            //anim.SetBool("run", false);
+            //changeState(STATE.attack);
+        }
+        float s = transform.position.x- playerO.transform.position.x;
         //Debug.Log(s);
         float g=0;
         if (s>=0)//向きを右に変える
