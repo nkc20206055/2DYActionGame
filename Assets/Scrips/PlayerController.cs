@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float gravity; //重力
     //攻撃
     public float MaxattackTime;//外部から変更できる最大ため時間
+    private Slider chargeSlider;//攻撃を貯めるのを見やすくするためのスライダー
     private float attackAutTime;//
     private float attackTime;//攻撃を貯めた時間
     private bool normalSwicth;//通常の状態に戻すための変数
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
         normalSwicth = false;
         Rd2D = gameObject.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        chargeSlider = GameObject.Find("attackchargeSlider").GetComponent<Slider>();
         pacC = transform.GetChild(2).gameObject.GetComponent<pacController>();
     }
 
@@ -67,12 +70,13 @@ public class PlayerController : MonoBehaviour
         {
             if (attackTime<MaxattackTime) {
                 attackTime += 1 * Time.deltaTime;
-
+                chargeSlider.value += 1*Time.deltaTime;
                 //Debug.Log(attackTime);
             }
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            chargeSlider.value = 0;
             if (attackTime >= MaxattackTime)//強攻撃
             {
                 anim.SetBool("hevayAttack", true);
@@ -98,6 +102,7 @@ public class PlayerController : MonoBehaviour
             attackTime += 1 * Time.deltaTime;
             if (attackTime >= attackAutTime)
             {
+                
                 anim.SetBool("lightAttack", false);
                 anim.SetBool("hevayAttack", false);
                 attackTime = 0;

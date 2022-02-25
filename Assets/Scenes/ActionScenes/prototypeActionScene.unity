@@ -1903,7 +1903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 8
   gravity: 0
-  MaxattackTime: 1
+  MaxattackTime: 3
 --- !u!95 &1167329970
 Animator:
   serializedVersion: 3
@@ -1964,7 +1964,7 @@ GameObject:
   - component: {fileID: 1168582432}
   m_Layer: 12
   m_Name: playerAttackCollider
-  m_TagString: Untagged
+  m_TagString: playerRightattack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

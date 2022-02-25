@@ -14,9 +14,11 @@ public class guardController : MonoBehaviour
     SpriteRenderer SR;//自分のSpriteRendererを入れる変数
     int hp,deletehp;//HPの変数
 
+    private SpriteRenderer sR;//自分のSpriteRendererをいれる
     private Animator anim;
     private Slider slider;//ガードゲージのUI
     private float CGtime,cTime;//
+    private float TransparentTime;//透明になれる時間
     private float sliderS;
     private bool MouseSwicth;//マウスが動かせるかどうか
     private bool gadeSwicth;//ガードが起動しているかどうか
@@ -51,19 +53,31 @@ public class guardController : MonoBehaviour
                     }
                 }
                 deletehp = 0;
+                TransparentTime = 0;
                 damageHetSwcith = false;
             }
             cTime += 1 * Time.deltaTime;
+            TransparentTime+=100*Time.deltaTime;
+            Debug.Log(TransparentTime);
             if (cTime<=0.01f) {
                 gameObject.layer = LayerMask.NameToLayer("PlayerDamge");//レイヤーマスクを変更する
             }else if (cTime > 0.01f&&cTime<damageTime)
             {
-
+                //if (TransparentTime % 2==0)
+                //{
+                //    sR.color = new Color(1,1,1,1);
+                //}
+                //else
+                //{
+                //    sR.color = new Color(1, 1, 1, 0);
+                //}
             }
             else if (cTime>= damageTime)
             {
+                sR.color = new Color(1, 1, 1, 1);
                 gameObject.layer = LayerMask.NameToLayer("Default");//レイヤーマスクを戻す
                 damageSwicth = false;
+                TransparentTime = 0;
                 cTime = 0;
             }
         }
@@ -72,6 +86,7 @@ public class guardController : MonoBehaviour
     void Start()
     {
         hp = 10;//最大hpの設定
+        sR = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         slider = GameObject.Find("guardgage").GetComponent<Slider>();
         MouseSwicth = true;

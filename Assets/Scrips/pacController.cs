@@ -26,6 +26,7 @@ public class pacController : MonoBehaviour
         {
             if (StartSwicth == true)
             {
+                
                 heavyattackSwicth = false;
                 savePpos.x = 0;
                 speed = 5;
@@ -50,6 +51,7 @@ public class pacController : MonoBehaviour
         {
             if (StartSwicth == true)
             {
+                gameObject.tag = "playerHeavyattack";//tagを変更
                 rightattackSwicth = false;
                 savePpos.x = 0;
                 speed = 5;
@@ -60,6 +62,7 @@ public class pacController : MonoBehaviour
 
             if (savePpos.x >= 3.84f)
             {
+                gameObject.tag = "playerRightattack";//tagを元に戻す
                 transform.position = playerG.transform.position;
                 StartSwicth = true;
                 heavyattackSwicth = false;
