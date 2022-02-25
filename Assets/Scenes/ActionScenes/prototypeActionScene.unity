@@ -1903,7 +1903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 8
   gravity: 0
-  MaxattackTime: 3
+  MaxattackTime: 1
 --- !u!95 &1167329970
 Animator:
   serializedVersion: 3
@@ -1950,7 +1950,7 @@ MonoBehaviour:
   CounterObject: {fileID: 424816388}
   hpui: {fileID: 1176844424}
   counterTime: 0.2
-  damageTime: 1
+  damageTime: 2
 --- !u!1 &1168582430
 GameObject:
   m_ObjectHideFlags: 0

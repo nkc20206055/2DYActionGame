@@ -18,7 +18,6 @@ public class guardController : MonoBehaviour
     private Animator anim;
     private Slider slider;//ガードゲージのUI
     private float CGtime,cTime;//
-    private float TransparentTime;//透明になれる時間
     private float sliderS;
     private bool MouseSwicth;//マウスが動かせるかどうか
     private bool gadeSwicth;//ガードが起動しているかどうか
@@ -53,31 +52,21 @@ public class guardController : MonoBehaviour
                     }
                 }
                 deletehp = 0;
-                TransparentTime = 0;
                 damageHetSwcith = false;
+                gameObject.layer = LayerMask.NameToLayer("PlayerDamge");//レイヤーマスクを変更する
             }
             cTime += 1 * Time.deltaTime;
-            TransparentTime+=100*Time.deltaTime;
-            Debug.Log(TransparentTime);
-            if (cTime<=0.01f) {
-                gameObject.layer = LayerMask.NameToLayer("PlayerDamge");//レイヤーマスクを変更する
-            }else if (cTime > 0.01f&&cTime<damageTime)
+            if (cTime<damageTime)//点滅させる
             {
-                //if (TransparentTime % 2==0)
-                //{
-                //    sR.color = new Color(1,1,1,1);
-                //}
-                //else
-                //{
-                //    sR.color = new Color(1, 1, 1, 0);
-                //}
+                float level = Mathf.Abs(Mathf.Sin(Time.time * 10));//Mathf.Absは絶対値、Mathf.SinはSin(サイン)が出される
+                sR.color = new Color(1f, 1f, 1f, level);
+
             }
             else if (cTime>= damageTime)
             {
-                sR.color = new Color(1, 1, 1, 1);
+                sR.color = new Color(255, 255, 255, 255);
                 gameObject.layer = LayerMask.NameToLayer("Default");//レイヤーマスクを戻す
                 damageSwicth = false;
-                TransparentTime = 0;
                 cTime = 0;
             }
         }
