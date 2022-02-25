@@ -43,7 +43,7 @@ public class scarecrowEnemy3C : MonoBehaviour
             counterSwicth = false;
         }
     }
-    void Damage()//攻撃をくらったときかカウンターされたとき
+    void Damage(int HetHp)//攻撃をくらったときかカウンターされたとき
     {
         //if (counterSwicth == false) {
         //    anim.SetBool("rightattack", false);
@@ -55,24 +55,10 @@ public class scarecrowEnemy3C : MonoBehaviour
         anim.SetBool("rightattack", false);
         anim.SetBool("heavyattack", false);
         anim.SetBool("damage", true);
-        HP--;
+        HP=HP-HetHp;
     }
     void CounterHet()
     {
-        //if (counterSwicth == true)
-        //{
-        //    if (ECC.counterHetSwicth == true)
-        //    {
-        //        //anim.Play("counter");
-        //        anim.SetBool("heavyattack", false);
-        //        anim.SetBool("counterhet", true);
-        //        ECC.counterHetSwicth = false;
-        //        counterSwicth = false;
-
-        //    }
-        //    ECC.counterHetSwicth = false;
-        //    counterSwicth = false;
-        //}
         if (counterSwicth == true)
         {
             anim.SetBool("heavyattack", false);
@@ -133,12 +119,6 @@ public class scarecrowEnemy3C : MonoBehaviour
             heavyattack();
         }
 
-        //if (Input.GetKeyDown(KeyCode.V))//ダメージのアニメーションが動くかどうかの確認
-        //{
-        //    Damage();
-        //}
-
-        //Damage();
 
         if (HP<=0)//死亡
         {
@@ -148,21 +128,19 @@ public class scarecrowEnemy3C : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (counterSwicth==true) {
-        //    if (collision.gameObject.tag == "playerCounterattack")
-        //    {
-        //        Damage();
-        //    }
-        //}
         if (collision.gameObject.tag == "playerCounterattack")
         {
             //Debug.Log("ヒット");
             CounterHet();
         }
-        if (collision.gameObject.name== "playerAttackCollider")//お試し
+        if (collision.gameObject.tag =="playerRightattack")//プレイヤーの弱攻撃
         {
-            Debug.Log("ヒット");
-            Damage();
+            Damage(1);
+        }
+        
+        if (collision.gameObject.tag == "playerHeavyattack")//プレイヤーの強攻撃
+        {
+            Damage(2);
         }
     }
 }

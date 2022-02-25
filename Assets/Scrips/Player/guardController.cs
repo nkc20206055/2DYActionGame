@@ -12,7 +12,8 @@ public class guardController : MonoBehaviour
 
     EcColliderController ECC;
     SpriteRenderer SR;//自分のSpriteRendererを入れる変数
-    int hp,deletehp;//HPの変数
+    public int hp;
+    int deletehp;//HPの変数
 
     private SpriteRenderer sR;//自分のSpriteRendererをいれる
     private Animator anim;
