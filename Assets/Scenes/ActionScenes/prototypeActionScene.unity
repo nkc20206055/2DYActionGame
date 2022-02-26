@@ -261,7 +261,7 @@ PrefabInstance:
     - target: {fileID: 6710268945571645833, guid: 01783811359bab24998c60d9e11ac7ff,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6710268945571645837, guid: 01783811359bab24998c60d9e11ac7ff,
         type: 3}
@@ -828,8 +828,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -12, y: 31}
+  m_SizeDelta: {x: 678.49713, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &609243510
 MonoBehaviour:
@@ -852,10 +852,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2735,7 +2735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1483656391
 Transform:
   m_ObjectHideFlags: 0
@@ -2765,6 +2765,7 @@ MonoBehaviour:
   Enemy: {fileID: 6788301650691404789, guid: 46ab77c479a355a4b8025236bc862fbe, type: 3}
   Enemy1: {fileID: 5187125799888888906, guid: 5eadb78a3d1735644ad8632859a033b8, type: 3}
   Enemy2: {fileID: 6710268945571645833, guid: 01783811359bab24998c60d9e11ac7ff, type: 3}
+  MaxExplanationTime: 1
 --- !u!1 &1705441299
 GameObject:
   m_ObjectHideFlags: 0

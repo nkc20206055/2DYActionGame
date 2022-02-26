@@ -12,12 +12,15 @@ public class prototypeGMController : MonoBehaviour
     private Stage nextstart ;//次に始まるイーナムを入れる変数
 
     public GameObject Enemy, Enemy1, Enemy2;//三種の敵キャラを入れる変数
+    public float MaxExplanationTime;//説明できる最大時間
 
     private GameObject SaveObject;
     private Text tutorialT;//チュートリアル用textを入れる変数
     private int gimmickNumber;//
+    private float ExplanationTime;//
     private bool Stagestart;//ステージが始まったかどうか
     private bool changebool;//Enemy2のスクリプトにあるboolを変えるようにする変数
+    private bool TimeSwicth;//説明時間が動いているかどうか
 
     guardController gC;
     // Start is called before the first frame update
@@ -26,6 +29,7 @@ public class prototypeGMController : MonoBehaviour
         gimmickNumber = 0;
         gC = GameObject.Find("prototypePlayer").GetComponent<guardController>();
         tutorialT = GameObject.Find("tutorialText").GetComponent<Text>();
+        TimeSwicth = true;
         //Stagestart = true;
     }
 
@@ -37,6 +41,8 @@ public class prototypeGMController : MonoBehaviour
             Debug.Log("プレイヤー死亡");
             SceneManager.LoadScene("prototypeActionScene");
         }
+
+        
 
         if (changebool==true)
         {
@@ -74,31 +80,70 @@ public class prototypeGMController : MonoBehaviour
             start = nextstart;
         }
 
+        Explanationtime();
+    }
+    private void Explanationtime()
+    {
+        if (TimeSwicth == true)
+        {
+            if (MaxExplanationTime >ExplanationTime)
+            {
+                ExplanationTime += 1 * Time.deltaTime;
+                Debug.Log(ExplanationTime);
+            }else if (MaxExplanationTime <= ExplanationTime)
+            {
+                gimmickNumber++;
+                ExplanationTime = 0;
+            }
+        }
     }
     private void changeStage(Stage _stage)//ステージを切り替えたいときに使用
     {
+        TimeSwicth = true;
+        gimmickNumber = 0;
         nextstart = _stage;
     }
     private void STAGE1()//ステージ1
     {
-        if (gimmickNumber==0)
+        if (gimmickNumber == 0)
         {
             tutorialT.text = "操作説明";
-        }
-        if (Stagestart==true)
+        } else if (gimmickNumber == 1)
         {
-            SaveObject = Instantiate(Enemy);
-            SaveObject.transform.position = new Vector3(7.366421f, 19.35053f, 0);
-            Stagestart = false;
+            tutorialT.text = "AキーとＤキーで左右移動";
+        }
+        else if (gimmickNumber == 2)
+        {
+            tutorialT.text = "spaceキーでジャンプ";
+        }
+        else if (gimmickNumber == 3)
+        {
+            tutorialT.text = "マウス左ボタンで弱攻撃";
+        }else if (gimmickNumber == 4)
+        {
+            tutorialT.text = "マウス左ボタンを長押しすることでオレンジ色のゲージが溜まり";
+            if (MaxExplanationTime <= ExplanationTime)
+            {
+                Stagestart = true;
+            }
+        } 
+        else if (gimmickNumber == 5) {
+            tutorialT.text = "最大の状態で左ボタンを離すと強攻撃が出せます";
+            if (Stagestart == true)
+            {
+                TimeSwicth = false;
+                SaveObject = Instantiate(Enemy);
+                SaveObject.transform.position = new Vector3(7.366421f, 19.35053f, 0);
+                Stagestart = false;
+            }
+            else if (SaveObject == null && gimmickNumber == 5)
+            {
+                Debug.Log(SaveObject);
+                Stagestart = true;
+                changeStage(Stage.Stage2);
+            }
         }
 
-        //Debug.Log("動いている");
-        if (SaveObject==null&&gimmickNumber==10)
-        {
-            Debug.Log(SaveObject);
-            Stagestart = true;
-            changeStage(Stage.Stage2);
-        }
     }
     private void STAGE2()//ステージ2
     {
