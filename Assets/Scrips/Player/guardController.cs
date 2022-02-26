@@ -7,6 +7,7 @@ public class guardController : MonoBehaviour
 {
     [SerializeField] GameObject CounterObject;
     public GameObject hpui;//HPのUIを入れる変数
+    public AudioClip Se1;
     public float counterTime;//カウンターできる時間
     public float damageTime;//無敵時間
 
@@ -17,6 +18,7 @@ public class guardController : MonoBehaviour
 
     private SpriteRenderer sR;//自分のSpriteRendererをいれる
     private Animator anim;
+    private AudioSource AS;
     private Slider slider;//ガードゲージのUI
     private float CGtime,cTime;//
     private float sliderS;
@@ -78,6 +80,7 @@ public class guardController : MonoBehaviour
         hp = 10;//最大hpの設定
         sR = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        AS = GetComponent<AudioSource>();
         slider = GameObject.Find("guardgage").GetComponent<Slider>();
         MouseSwicth = true;
         sliderS = slider.maxValue;
@@ -104,6 +107,7 @@ public class guardController : MonoBehaviour
             if (ECC.counterHetSwicth == true)
             {
                 Debug.Log("当たった");
+                AS.PlayOneShot(Se1);//SEを鳴らす
                 gameObject.layer = LayerMask.NameToLayer("PlayerDamge");//レイヤーマスクを変更する
                 anim.SetBool("counterattack", true);
                 anim.SetBool("counter", false);
@@ -145,7 +149,7 @@ public class guardController : MonoBehaviour
                 else if (CGtime > 0.05f && CGtime < counterTime)//カウンター
                 {
                     Debug.Log("カウンター");
-                    gameObject.layer = LayerMask.NameToLayer("Default");//レイヤーマスクを戻す
+                    //gameObject.layer = LayerMask.NameToLayer("Default");//レイヤーマスクを戻す
                     //anim.SetBool("counterattack", true);
                     anim.SetBool("counter", false);
                     CounterObject.SetActive(false);
