@@ -147,51 +147,111 @@ public class prototypeGMController : MonoBehaviour
     }
     private void STAGE2()//ステージ2
     {
-        if (Stagestart == true)
+        if (gimmickNumber == 0)
         {
-            SaveObject = Instantiate(Enemy1);
-            SaveObject.transform.position = new Vector3(7.366421f, 19.35053f, 0);
-            Stagestart = false;
+            tutorialT.text = "マウス右ボタンでカウンターが出せ";
         }
-
-        if (SaveObject == null)
+        else if (gimmickNumber == 1)
         {
-            Debug.Log(SaveObject);
-            Stagestart = true;
-            changeStage(Stage.Stage3);
+            tutorialT.text = "マウス右ボタンを長押しすることでガードがだせ";
+            if (MaxExplanationTime <= ExplanationTime)
+            {
+                Stagestart = true;
+            }
+        }
+        else if (gimmickNumber == 2)
+        {
+            tutorialT.text = "このガードは敵の攻撃を防ぐことが出来る";
+            if (Stagestart == true)
+            {
+                TimeSwicth = false;
+                SaveObject = Instantiate(Enemy1);
+                SaveObject.transform.position = new Vector3(7.366421f, 19.35053f, 0);
+                Stagestart = false;
+            }
+
+            if (SaveObject == null && gimmickNumber == 2)
+            {
+                Debug.Log(SaveObject);
+                Stagestart = true;
+                changeStage(Stage.Stage3);
+            }
         }
     }
     private void STAGE3()//ステージ3
     {
-        if (Stagestart == true)
+        if (gimmickNumber == 0)
         {
-            SaveObject = Instantiate(Enemy2);
-            SaveObject.transform.position = new Vector3(7.366421f, 19.35053f, 0);
-            changebool = true;
-            Stagestart = false;
+            tutorialT.text = "敵の攻撃には2種類あり弱攻撃と強攻撃があります";
         }
-
-        if (SaveObject == null)
+        else if (gimmickNumber == 1)
         {
-            Debug.Log(SaveObject);
-            Stagestart = true;
-            changeStage(Stage.Stage4);
+            tutorialT.text = "水色の攻撃が弱攻撃であり、くらうと2ダメージくらい";
+            if (MaxExplanationTime <= ExplanationTime)
+            {
+                Stagestart = true;
+            }
+        }
+        else if (gimmickNumber == 2)
+        {
+            tutorialT.text = "ガードすればダメージをくらいません";
+            if (Stagestart == true)
+            {
+                TimeSwicth = false;
+                SaveObject = Instantiate(Enemy2);
+                SaveObject.transform.position = new Vector3(7.366421f, 19.35053f, 0);
+                changebool = true;
+                Stagestart = false;
+            }
+
+            if (SaveObject == null&& gimmickNumber == 2)
+            {
+                Debug.Log(SaveObject);
+                Stagestart = true;
+                changeStage(Stage.Stage4);
+            }
         }
     }
     private void STAGE4()//ステージ4
     {
-        if (Stagestart == true)
+        if (gimmickNumber == 0)
         {
-            SaveObject = Instantiate(Enemy2);
-            SaveObject.transform.position = new Vector3(7.366421f, 19.35053f, 0);
-            changebool = true;
-            Stagestart = false;
+            tutorialT.text = "オレンジ色の攻撃は強攻撃であり、3ダメージくらい";
         }
-
-        if (SaveObject == null)
+        else if (gimmickNumber == 1)
         {
-            Debug.Log(SaveObject);
-            Debug.Log("チュートリアル終了");
+            tutorialT.text = "ガードすると1ダメージくらい水色のゲージが減ってしまう";
+        }
+        else if (gimmickNumber == 2)
+        {
+            tutorialT.text = "この水色のゲージが0になるとガードブレイクされてしまい、一定時間動けなくなってしまう。";
+        }
+        else if (gimmickNumber == 3)
+        {
+            tutorialT.text = "だが、この攻撃をカウンターすることで相手をスキだらけにできます";
+            if (MaxExplanationTime <= ExplanationTime)
+            {
+                Stagestart = true;
+            }
+        } else if (gimmickNumber==4) {
+            tutorialT.text = "敵からオレンジ色が見えたら、カウンターできるのでやってみよう";
+            if (Stagestart == true)
+            {
+                TimeSwicth = false;
+                SaveObject = Instantiate(Enemy2);
+                SaveObject.transform.position = new Vector3(7.366421f, 19.35053f, 0);
+                changebool = true;
+                Stagestart = false;
+            }
+
+            if (SaveObject == null&& gimmickNumber == 4)
+            {
+                TimeSwicth = true;
+                //Stagestart = true;
+            }
+        }else if (gimmickNumber == 5)
+        {
+            tutorialT.text = "チュートリアル終了";
         }
     }
 }
