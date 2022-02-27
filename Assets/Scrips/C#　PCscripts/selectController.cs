@@ -133,7 +133,7 @@ public class selectController : MonoBehaviour
             ButtonSwicth = true;
         }
 
-        if (ButtonSwicth == true && Input.GetKeyDown(KeyCode.Return))//エンターを押した場合
+        if (ButtonSwicth == true && Input.GetKeyDown(KeyCode.Return)|| ButtonSwicth == true && Input.GetMouseButtonDown(0))//エンターを押した場合
         {
             selectBs[CountS].onClick.Invoke();//ボタンのonClickを起動する
                                               //Debug.Log(selectI[CountS]+"を押した");
