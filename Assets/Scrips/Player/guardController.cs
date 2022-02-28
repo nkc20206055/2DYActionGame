@@ -27,6 +27,7 @@ public class guardController : MonoBehaviour
     private bool counterSwicth;//
     private bool damageSwicth;//ダメージを食らっているかどうか
     private bool damageHetSwcith;//ダメージを食らったときにうごく
+    private bool damageHetOn;//攻撃を食らったかどうか
     void animationcancel()//アニメーションを途中で終わらせるのに使う
     {
         anim.SetBool("counterattack", false);
@@ -70,6 +71,7 @@ public class guardController : MonoBehaviour
                 sR.color = new Color(255, 255, 255, 255);
                 gameObject.layer = LayerMask.NameToLayer("Default");//レイヤーマスクを戻す
                 damageSwicth = false;
+                damageHetOn = false;
                 cTime = 0;
             }
         }
@@ -83,6 +85,7 @@ public class guardController : MonoBehaviour
         AS = GetComponent<AudioSource>();
         slider = GameObject.Find("guardgage").GetComponent<Slider>();
         MouseSwicth = true;
+        damageHetOn = false;
         sliderS = slider.maxValue;
     }
 
@@ -97,6 +100,7 @@ public class guardController : MonoBehaviour
             anim.SetBool("grndbreak", true);
             anim.SetBool("guard", false);
             damageSwicth = false;
+            damageHetOn = false;
             sliderS = slider.maxValue;
             slider.value = slider.maxValue;
         }
@@ -190,41 +194,51 @@ public class guardController : MonoBehaviour
 
         }
 
-        if (collision.gameObject.tag=="enemyrightattack")
-        {
-            damageHetSwcith = true;
-            damageSwicth = true;     
-            if (gadeSwicth==true)
+        if (damageHetOn==false) {
+            if (collision.gameObject.tag == "enemyrightattack")
             {
-                Debug.Log("敵の弱攻撃を軽減");
-                //ノーダメージ
 
+                damageHetSwcith = true;
+                damageSwicth = true;
+                if (gadeSwicth == true)
+                {
+                    Debug.Log("敵の弱攻撃を軽減");
+                    damageHetOn = true;
+                    //ノーダメージ
+
+                }
+                else
+                {
+                    Debug.Log("敵の弱攻撃がヒット");
+                    //減るのはハート1つ
+                    deletehp = 2;
+                    damageHetOn = true;
+
+                }
             }
-            else
+            else if (collision.gameObject.tag == "enemyheavyattack")
             {
-                Debug.Log("敵の弱攻撃がヒット");
-                //減るのはハート1つ
-                deletehp = 2;
-            }
-        }
-        else if (collision.gameObject.tag == "enemyheavyattack")
-        {
-            damageHetSwcith = true;
-            damageSwicth = true;
-            if (gadeSwicth == true)
-            {
-                Debug.Log("敵の強攻撃を軽減");
-                //減るのはハート半分でガードゲージが減る
-                deletehp = 1;
-                slider.value -= 20;
-                sliderS = slider.value;
-                //Debug.Log(sliderS);
-            }
-            else
-            {
-                Debug.Log("敵の強攻撃がヒット");
-                //減るのはハート1.5つ
-                deletehp = 3;
+                damageHetSwcith = true;
+                damageSwicth = true;
+                if (gadeSwicth == true)
+                {
+                    Debug.Log("敵の強攻撃を軽減");
+                    //減るのはハート半分でガードゲージが減る
+                    deletehp = 1;
+                    slider.value -= 20;
+                    sliderS = slider.value;
+                    damageHetOn = true;
+
+                    //Debug.Log(sliderS);
+                }
+                else
+                {
+                    Debug.Log("敵の強攻撃がヒット");
+                    //減るのはハート1.5つ
+                    deletehp = 3;
+                    damageHetOn = true;
+
+                }
             }
         }
     }

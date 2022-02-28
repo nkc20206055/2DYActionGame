@@ -2184,7 +2184,7 @@ MonoBehaviour:
   hpui: {fileID: 1176844424}
   Se1: {fileID: 8300000, guid: 6f401494f19689f4882c37ae640f9dcd, type: 3}
   counterTime: 0.2
-  damageTime: 2
+  damageTime: 3
   hp: 0
 --- !u!82 &1167329973
 AudioSource:
