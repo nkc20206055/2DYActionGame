@@ -149,11 +149,11 @@ public class prototypeGMController : MonoBehaviour
     {
         if (gimmickNumber == 0)
         {
-            tutorialT.text = "マウス右ボタンでカウンターが出せ";
+            tutorialT.text = "マウス右ボタンでカウンター";
         }
         else if (gimmickNumber == 1)
         {
-            tutorialT.text = "マウス右ボタンを長押しすることでガードがだせ";
+            tutorialT.text = "マウス右ボタンを長押しすることでガードが出せます";
             if (MaxExplanationTime <= ExplanationTime)
             {
                 Stagestart = true;
@@ -186,7 +186,7 @@ public class prototypeGMController : MonoBehaviour
         }
         else if (gimmickNumber == 1)
         {
-            tutorialT.text = "水色の攻撃が弱攻撃であり、くらうと2ダメージくらい";
+            tutorialT.text = "水色の攻撃が弱攻撃であり、ダメージは2くらい";
             if (MaxExplanationTime <= ExplanationTime)
             {
                 Stagestart = true;
@@ -216,7 +216,7 @@ public class prototypeGMController : MonoBehaviour
     {
         if (gimmickNumber == 0)
         {
-            tutorialT.text = "オレンジ色の攻撃は強攻撃であり、3ダメージくらい";
+            tutorialT.text = "オレンジ色の攻撃は強攻撃であり、当たると3ダメージくらい";
         }
         else if (gimmickNumber == 1)
         {
@@ -252,6 +252,9 @@ public class prototypeGMController : MonoBehaviour
         }else if (gimmickNumber == 5)
         {
             tutorialT.text = "チュートリアル終了";
+        }else if (gimmickNumber == 6)
+        {
+            SceneManager.LoadScene("titleScene");
         }
     }
 }

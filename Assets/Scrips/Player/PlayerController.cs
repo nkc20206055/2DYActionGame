@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
                 pacC.heavyattackSwicth = true;
                 StartCoroutine("WaitForAttack");
                 attackTime = 0;
-                attackAutTime = 1;//戻るまでの時間
+                attackAutTime = 0.6f;//戻るまでの時間
                 normalSwicth = true;
             }
             else if (attackTime < MaxattackTime)//弱攻撃
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 pacC.rightattackSwicth = true;
                 StartCoroutine("WaitForAttack");
                 attackTime = 0;
-                attackAutTime = 1;//戻るまでの時間
+                attackAutTime = 0.6f;//戻るまでの時間
                 normalSwicth = true;
             }
         }else if (normalSwicth == true)//攻撃を戻す

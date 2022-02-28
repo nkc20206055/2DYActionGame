@@ -2765,7 +2765,7 @@ MonoBehaviour:
   Enemy: {fileID: 6788301650691404789, guid: 46ab77c479a355a4b8025236bc862fbe, type: 3}
   Enemy1: {fileID: 5187125799888888906, guid: 5eadb78a3d1735644ad8632859a033b8, type: 3}
   Enemy2: {fileID: 6710268945571645833, guid: 01783811359bab24998c60d9e11ac7ff, type: 3}
-  MaxExplanationTime: 1
+  MaxExplanationTime: 2
 --- !u!1 &1705441299
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,7 +2777,7 @@ GameObject:
   - component: {fileID: 1705441300}
   - component: {fileID: 1705441301}
   - component: {fileID: 1705441302}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

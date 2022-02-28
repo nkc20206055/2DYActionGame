@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8132405441662068519, guid: 368b27242ec5b8342aefc959bef0f719, type: 3}
   MaxHP: 3
-  Maxattacktime: 3
+  Maxattacktime: 4
   GanEnemyOn: 1
 --- !u!50 &5187125799888888948
 Rigidbody2D:
