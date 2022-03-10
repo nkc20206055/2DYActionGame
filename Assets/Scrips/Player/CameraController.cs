@@ -84,7 +84,7 @@ public class CameraController : MonoBehaviour
                 Sizutime = 0;
                 SavePos = Player.transform.position;
                 gameObject.transform.position = new Vector3(SavePos.x, SavePos.y, -10);
-                Time.timeScale = 0.5f;
+                Time.timeScale = 0.8f;
                 counterSwicth = false;
             }
             CameraSizu();

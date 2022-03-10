@@ -411,6 +411,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: prototypePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 8051792691688903638, guid: a4fd31144d26d4c48aefb10250436dcf,
+        type: 3}
+      propertyPath: hpui
+      value: 
+      objectReference: {fileID: 1379466392}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4fd31144d26d4c48aefb10250436dcf, type: 3}
 --- !u!1 &352445985
@@ -542,7 +547,7 @@ PrefabInstance:
     - target: {fileID: 6710268945571645833, guid: 01783811359bab24998c60d9e11ac7ff,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6710268945571645837, guid: 01783811359bab24998c60d9e11ac7ff,
         type: 3}
@@ -598,6 +603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710268945571645839, guid: 01783811359bab24998c60d9e11ac7ff,
+        type: 3}
+      propertyPath: heavyattackSwicth
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01783811359bab24998c60d9e11ac7ff, type: 3}
@@ -942,6 +952,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1379466392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4862922621498246864, guid: 76978e74fb30a0042a49f75c89bf2f14,
+    type: 3}
+  m_PrefabInstance: {fileID: 823464262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1620363419
 GameObject:
   m_ObjectHideFlags: 0

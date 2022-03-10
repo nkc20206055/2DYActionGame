@@ -146,14 +146,15 @@ public class guardController : MonoBehaviour
                 }
             } else if (Input.GetMouseButtonUp(1))//右マウスボタンを上げた時
             {
-                if (CGtime <= 0.05f)//すぐにできないよう猶予を作っている
-                {
-                    Debug.Log("カウンターキャンセル");
-                    gameObject.layer = LayerMask.NameToLayer("Default");//レイヤーマスクを戻す
-                    anim.SetBool("counter", false);
-                    CounterObject.SetActive(false);
-                }
-                else if (CGtime > 0.05f && CGtime < counterTime)//カウンター
+                //if (CGtime <= 0.05f)//すぐにできないよう猶予を作っている
+                //{
+                //    Debug.Log("カウンターキャンセル");
+                //    gameObject.layer = LayerMask.NameToLayer("Default");//レイヤーマスクを戻す
+                //    anim.SetBool("counter", false);
+                //    CounterObject.SetActive(false);
+                //}
+                //else
+                if (/*CGtime > 0.05f &&*/ CGtime < counterTime)//カウンター
                 {
                     Debug.Log("カウンター");
                     //gameObject.layer = LayerMask.NameToLayer("Default");//レイヤーマスクを戻す
