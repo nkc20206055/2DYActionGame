@@ -359,7 +359,7 @@ PrefabInstance:
     - target: {fileID: 8051792691688903629, guid: a4fd31144d26d4c48aefb10250436dcf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8051792691688903629, guid: a4fd31144d26d4c48aefb10250436dcf,
         type: 3}
@@ -490,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 352445985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.060530677, y: -2.66, z: -5.674609}
-  m_LocalScale: {x: 115.45505, y: 7.093125, z: 1}
+  m_LocalScale: {x: 254.00111, y: 7.093125, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -1019,8 +1019,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620363419}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.52, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 7.73, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Maxtime: 1
+  SizuSwicth: 0
 --- !u!1 &1939994196
 GameObject:
   m_ObjectHideFlags: 0

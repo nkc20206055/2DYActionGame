@@ -16,6 +16,7 @@ public class guardController : MonoBehaviour
     public int hp;
     int deletehp;//HPの変数
 
+    private CameraController CC;//カメラのCameraControllerを取得する用
     private SpriteRenderer sR;//自分のSpriteRendererをいれる
     private Animator anim;
     private AudioSource AS;
@@ -84,6 +85,7 @@ public class guardController : MonoBehaviour
         anim = GetComponent<Animator>();
         AS = GetComponent<AudioSource>();
         slider = GameObject.Find("guardgage").GetComponent<Slider>();
+        CC = GameObject.Find("Main Camera").GetComponent<CameraController>();
         MouseSwicth = true;
         damageHetOn = false;
         sliderS = slider.maxValue;
@@ -116,6 +118,7 @@ public class guardController : MonoBehaviour
                 anim.SetBool("counterattack", true);
                 anim.SetBool("counter", false);
                 CounterObject.SetActive(false);
+                CC.counterON();
             }
             counterSwicth = false;
         }
