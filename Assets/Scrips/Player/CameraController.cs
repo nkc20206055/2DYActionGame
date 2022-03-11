@@ -22,21 +22,26 @@ public class CameraController : MonoBehaviour
         if (Maxtime>Sizutime)
         {
             Sizutime += 1 * Time.deltaTime;
+            //if (GamespeedSwicth == true)
+            //{
+            //    //Time.timeScale = 1f;
+            //    GamespeedSwicth = false;
+            //}
             if (MiCamera.orthographicSize>counterSizu) {
                 MiCamera.orthographicSize -= 0.3f;
             }
-            else
-            {
-                GamespeedSwicth = true;
-            }
+            //else
+            //{
+            //    GamespeedSwicth = true;
+            //}
         }
         else if (Maxtime <= Sizutime)
         {
-            if (GamespeedSwicth==true)
-            {
-                Time.timeScale = 1f;
-                GamespeedSwicth = false;
-            }
+            //if (GamespeedSwicth==true)
+            //{
+            //    Time.timeScale = 1f;
+            //    GamespeedSwicth = false;
+            //}
             //gameObject.transform.position = SaveMiPos;
             if (MiCamera.orthographicSize < MaxSizu)
             {
@@ -84,7 +89,8 @@ public class CameraController : MonoBehaviour
                 Sizutime = 0;
                 SavePos = Player.transform.position;
                 gameObject.transform.position = new Vector3(SavePos.x, SavePos.y, -10);
-                Time.timeScale = 0.8f;
+                //Time.timeScale = 0.8f;
+                //GamespeedSwicth = true;
                 counterSwicth = false;
             }
             CameraSizu();

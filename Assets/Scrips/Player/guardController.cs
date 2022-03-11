@@ -25,7 +25,7 @@ public class guardController : MonoBehaviour
     private float sliderS;
     private bool MouseSwicth;//マウスが動かせるかどうか
     private bool gadeSwicth;//ガードが起動しているかどうか
-    private bool counterSwicth;//
+    private bool counterSwicth,countSpeed;//
     private bool damageSwicth;//ダメージを食らっているかどうか
     private bool damageHetSwcith;//ダメージを食らったときにうごく
     private bool damageHetOn;//攻撃を食らったかどうか
@@ -36,6 +36,19 @@ public class guardController : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Default");
         MouseSwicth = true;
         Debug.Log("動いた");
+    }
+    void counterONA()//カウンター成功時にカメラのcounterONが動くようにする
+    {
+        if (countSpeed == true)
+        {
+            Time.timeScale = 0.8f;
+            countSpeed = false;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            countSpeed = true;
+        }
     }
     void Damage()//ダメージ時のHPの減りや無敵時間などを設定
     {
@@ -87,6 +100,7 @@ public class guardController : MonoBehaviour
         slider = GameObject.Find("guardgage").GetComponent<Slider>();
         CC = GameObject.Find("Main Camera").GetComponent<CameraController>();
         MouseSwicth = true;
+        countSpeed = true;
         damageHetOn = false;
         sliderS = slider.maxValue;
     }
@@ -108,20 +122,20 @@ public class guardController : MonoBehaviour
         }
 
         //カウンターが成功した時
-        if (counterSwicth==true)
-        {
-            if (ECC.counterHetSwicth == true)
-            {
-                Debug.Log("当たった");
-                AS.PlayOneShot(Se1);//SEを鳴らす
-                gameObject.layer = LayerMask.NameToLayer("PlayerDamge");//レイヤーマスクを変更する
-                anim.SetBool("counterattack", true);
-                anim.SetBool("counter", false);
-                CounterObject.SetActive(false);
-                CC.counterON();
-            }
-            counterSwicth = false;
-        }
+        //if (counterSwicth==true)
+        //{
+        //    if (ECC.counterHetSwicth == true)
+        //    {
+        //        Debug.Log("当たった");
+        //        AS.PlayOneShot(Se1);//SEを鳴らす
+        //        gameObject.layer = LayerMask.NameToLayer("PlayerDamge");//レイヤーマスクを変更する
+        //        anim.SetBool("counterattack", true);
+        //        anim.SetBool("counter", false);
+        //        CounterObject.SetActive(false);
+        //        CC.counterON();
+        //    }
+        //    counterSwicth = false;
+        //}
 
         //カウンターとガードの操作
         if (MouseSwicth==true) {
@@ -195,7 +209,20 @@ public class guardController : MonoBehaviour
             //Debug.Log(collision.gameObject);
             ECC = collision.gameObject.GetComponent<EcColliderController>();
             counterSwicth = true;
-
+            if (counterSwicth == true)
+            {
+                if (ECC.counterHetSwicth == true)
+                {
+                    Debug.Log("当たった");
+                    AS.PlayOneShot(Se1);//SEを鳴らす
+                    gameObject.layer = LayerMask.NameToLayer("PlayerDamge");//レイヤーマスクを変更する
+                    anim.SetBool("counterattack", true);
+                    anim.SetBool("counter", false);
+                    CounterObject.SetActive(false);
+                    CC.counterON();
+                }
+                counterSwicth = false;
+            }
         }
 
         if (damageHetOn==false) {

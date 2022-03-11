@@ -22,10 +22,10 @@ AnimationClip:
     - time: 0
       value: {fileID: -8242968865418451241, guid: 179de5e616f400f46923dd9a881c2e9e,
         type: 3}
-    - time: 0.16666667
+    - time: 0.083333336
       value: {fileID: 3134050349646817029, guid: 179de5e616f400f46923dd9a881c2e9e,
         type: 3}
-    - time: 0.28333333
+    - time: 0.2
       value: {fileID: 4335610441333400737, guid: 179de5e616f400f46923dd9a881c2e9e,
         type: 3}
     - time: 0.41666666
@@ -83,6 +83,20 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: counterONA
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.53333336
+    functionName: counterONA
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.5833333
     functionName: animationcancel
     data: 
