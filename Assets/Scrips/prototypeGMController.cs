@@ -12,7 +12,10 @@ public class prototypeGMController : MonoBehaviour
     private Stage nextstart ;//次に始まるイーナムを入れる変数
 
     public GameObject Enemy, Enemy1, Enemy2;//三種の敵キャラを入れる変数
+    public Sprite[] TutorialSs;//チュートリアル用説明文のSpriteを入れる配列
     public float MaxExplanationTime;//説明できる最大時間
+
+    SpriteRenderer TutorialS;
 
     private GameObject SaveObject;
     private Text tutorialT;//チュートリアル用textを入れる変数
@@ -28,7 +31,8 @@ public class prototypeGMController : MonoBehaviour
     {
         gimmickNumber = 0;
         gC = GameObject.Find("prototypePlayer").GetComponent<guardController>();
-        tutorialT = GameObject.Find("tutorialText").GetComponent<Text>();
+        //tutorialT = GameObject.Find("tutorialText").GetComponent<Text>();
+        TutorialS = GameObject.Find("tutorialText").GetComponent<SpriteRenderer>();
         TimeSwicth = true;
         //Stagestart = true;
     }
@@ -107,28 +111,35 @@ public class prototypeGMController : MonoBehaviour
     {
         if (gimmickNumber == 0)
         {
-            tutorialT.text = "操作説明";
+            //tutorialT.text = "操作説明";
+            TutorialS.sprite = TutorialSs[0];
         } else if (gimmickNumber == 1)
         {
-            tutorialT.text = "AキーとＤキーで左右移動";
+            //tutorialT.text = "AキーとＤキーで左右移動";
+            TutorialS.sprite = TutorialSs[1];
         }
         else if (gimmickNumber == 2)
         {
-            tutorialT.text = "spaceキーでジャンプ";
+            //tutorialT.text = "spaceキーでジャンプ";
+            TutorialS.sprite = TutorialSs[2];
         }
         else if (gimmickNumber == 3)
         {
-            tutorialT.text = "マウス左ボタンで弱攻撃";
-        }else if (gimmickNumber == 4)
+            //tutorialT.text = "マウス左ボタンで弱攻撃";
+            TutorialS.sprite = TutorialSs[3];
+        }
+        else if (gimmickNumber == 4)
         {
-            tutorialT.text = "マウス左ボタンを長押しすることでオレンジ色のゲージが溜まり";
+            //tutorialT.text = "マウス左ボタンを長押しすることでオレンジ色のゲージが溜まり";
+            TutorialS.sprite = TutorialSs[4];
             if (MaxExplanationTime <= ExplanationTime)
             {
                 Stagestart = true;
             }
         } 
         else if (gimmickNumber == 5) {
-            tutorialT.text = "最大の状態で左ボタンを離すと強攻撃が出せます";
+            //tutorialT.text = "最大の状態で左ボタンを離すと強攻撃が出せます";
+            TutorialS.sprite = TutorialSs[5];
             if (Stagestart == true)
             {
                 TimeSwicth = false;
@@ -149,11 +160,13 @@ public class prototypeGMController : MonoBehaviour
     {
         if (gimmickNumber == 0)
         {
-            tutorialT.text = "マウス右ボタンでカウンター";
+            //tutorialT.text = "マウス右ボタンでカウンター";
+            TutorialS.sprite = TutorialSs[6];
         }
         else if (gimmickNumber == 1)
         {
-            tutorialT.text = "マウス右ボタンを長押しすることでガードが出せます";
+            //tutorialT.text = "マウス右ボタンを長押しすることでガードが出せます";
+            TutorialS.sprite = TutorialSs[7];
             if (MaxExplanationTime <= ExplanationTime)
             {
                 Stagestart = true;
@@ -161,7 +174,8 @@ public class prototypeGMController : MonoBehaviour
         }
         else if (gimmickNumber == 2)
         {
-            tutorialT.text = "このガードは敵の攻撃を防ぐことが出来る";
+            //tutorialT.text = "このガードは敵の攻撃を防ぐことが出来る";
+            TutorialS.sprite = TutorialSs[8];
             if (Stagestart == true)
             {
                 TimeSwicth = false;
@@ -182,11 +196,13 @@ public class prototypeGMController : MonoBehaviour
     {
         if (gimmickNumber == 0)
         {
-            tutorialT.text = "敵の攻撃には2種類あり弱攻撃と強攻撃があります";
+            //tutorialT.text = "敵の攻撃には2種類あり弱攻撃と強攻撃があります";
+            TutorialS.sprite = TutorialSs[9];
         }
         else if (gimmickNumber == 1)
         {
-            tutorialT.text = "水色の攻撃が弱攻撃であり、ダメージは2くらい";
+            //tutorialT.text = "水色の攻撃が弱攻撃であり、ダメージは2くらい";
+            TutorialS.sprite = TutorialSs[10];
             if (MaxExplanationTime <= ExplanationTime)
             {
                 Stagestart = true;
@@ -194,7 +210,8 @@ public class prototypeGMController : MonoBehaviour
         }
         else if (gimmickNumber == 2)
         {
-            tutorialT.text = "ガードすればダメージをくらいません";
+            //tutorialT.text = "ガードすればダメージをくらいません";
+            TutorialS.sprite = TutorialSs[11];
             if (Stagestart == true)
             {
                 TimeSwicth = false;
@@ -216,25 +233,30 @@ public class prototypeGMController : MonoBehaviour
     {
         if (gimmickNumber == 0)
         {
-            tutorialT.text = "オレンジ色の攻撃は強攻撃であり、当たると3ダメージくらい";
+            //tutorialT.text = "オレンジ色の攻撃は強攻撃であり、当たると3ダメージくらい";
+            TutorialS.sprite = TutorialSs[12];
         }
         else if (gimmickNumber == 1)
         {
-            tutorialT.text = "ガードすると1ダメージくらい水色のゲージが減ってしまう";
+            //tutorialT.text = "ガードすると1ダメージくらい水色のゲージが減ってしまう";
+            TutorialS.sprite = TutorialSs[13];
         }
         else if (gimmickNumber == 2)
         {
-            tutorialT.text = "この水色のゲージが0になるとガードブレイクされてしまい、一定時間動けなくなってしまう。";
+            //tutorialT.text = "この水色のゲージが0になるとガードブレイクされてしまい、一定時間動けなくなってしまう。";
+            TutorialS.sprite = TutorialSs[14];
         }
         else if (gimmickNumber == 3)
         {
-            tutorialT.text = "だが、この攻撃をカウンターすることで相手をスキだらけにできます";
+            //tutorialT.text = "だが、この攻撃をカウンターすることで相手をスキだらけにできます";
+            TutorialS.sprite = TutorialSs[15];
             if (MaxExplanationTime <= ExplanationTime)
             {
                 Stagestart = true;
             }
         } else if (gimmickNumber==4) {
-            tutorialT.text = "敵からオレンジ色が見えたら、カウンターできるのでやってみよう";
+            //tutorialT.text = "敵からオレンジ色が見えたら、カウンターできるのでやってみよう";
+            TutorialS.sprite = TutorialSs[16];
             if (Stagestart == true)
             {
                 TimeSwicth = false;
@@ -251,8 +273,10 @@ public class prototypeGMController : MonoBehaviour
             }
         }else if (gimmickNumber == 5)
         {
-            tutorialT.text = "チュートリアル終了";
-        }else if (gimmickNumber == 6)
+            //tutorialT.text = "チュートリアル終了";
+            TutorialS.sprite = TutorialSs[17];
+        }
+        else if (gimmickNumber == 6)
         {
             SceneManager.LoadScene("titleScene");
         }

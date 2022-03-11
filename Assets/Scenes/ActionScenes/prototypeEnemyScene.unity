@@ -411,6 +411,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: prototypePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 8051792691688903635, guid: a4fd31144d26d4c48aefb10250436dcf,
+        type: 3}
+      propertyPath: playerPosXClamp
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051792691688903635, guid: a4fd31144d26d4c48aefb10250436dcf,
+        type: 3}
+      propertyPath: playerPosYClamp
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8051792691688903638, guid: a4fd31144d26d4c48aefb10250436dcf,
         type: 3}
       propertyPath: hpui

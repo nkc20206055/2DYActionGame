@@ -26,8 +26,10 @@ public class PlayerController : MonoBehaviour
 
     //移動制限処理用変数
     private Vector2 playerPos;
-    private readonly float playerPosXClamp = 15.0f;
-    private readonly float playerPosYClamp = 15.0f;
+    //private readonly float playerPosXClamp = 15.0f;
+    //private readonly float playerPosYClamp = 15.0f;
+    public float playerPosXClamp = 15.0f;
+    public float playerPosYClamp = 15.0f;
 
     // Start is called before the first frame update
     void Start()
